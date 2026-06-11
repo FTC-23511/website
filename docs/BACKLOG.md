@@ -17,7 +17,22 @@ Priority is top-down — most important items at the top of "Next up."
 
 <!-- Routine pulls from the top of this list. -->
 
-_(empty)_
+1. **Build website v1 per `docs/SPEC.md`** — the full overnight one-shot: all
+   six routes, design system, content research (ftcscout.org + existing team
+   web presence), metadata, responsive + a11y per SPEC §5. One branch, one PR.
+   **Tier override, sanctioned by the App Lead for this item only:** auto-merge
+   on green CI despite first-time team-facing claims, PROVIDED every fact is
+   research-sourced (cite source URLs in the PR body) or marked
+   `<!-- PLACEHOLDER -->`; no member names/photos; sponsor names only if found
+   on the team's own existing public pages. Goal: live at
+   `https://ftc-23511.github.io/website/` by morning.
+2. **Post-deploy audit** — fetch every route on the live Pages URL; fix
+   anything broken (basePath/asset paths are the classic failure), check
+   mobile nav and console errors, re-deploy. Auto-merge tier.
+3. **Polish pass** — a11y sweep per SPEC §5.4 (focus states, contrast,
+   reduced-motion), per-page metadata/OG check, README for the repo (what the
+   site is, how to run, content-update guide for non-programmers). Auto-merge
+   tier.
 
 ## In progress
 
