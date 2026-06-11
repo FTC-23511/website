@@ -7,12 +7,11 @@ const nextConfig: NextConfig = {
   // GitHub Pages has no image optimization server, so serve images as-is.
   images: { unoptimized: true },
 
-  // TODO: If this site deploys to GitHub Pages at a sub-path (a project page,
-  // e.g. https://<org>.github.io/<repo>/), set BOTH basePath and assetPrefix
-  // to "/<repo-name>" (e.g. "/website") or all links and assets will 404.
-  // Leave empty for a custom domain or a user/org root site.
-  basePath: "",
-  assetPrefix: "",
+  // Deployed to GitHub Pages at https://ftc-23511.github.io/website/ — both
+  // values must match the repo name or all links and assets 404. If the site
+  // ever moves to a custom domain (seattlesolvers.com), set both back to "".
+  basePath: "/website",
+  assetPrefix: "/website",
 };
 
 export default nextConfig;
