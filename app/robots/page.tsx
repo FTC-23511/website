@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
-import { Card, PageHero, Section } from "@/components/primitives";
+import { SeasonStage } from "@/components/SeasonStage";
+import { SpotlightCard } from "@/components/SpotlightCard";
+import { Section } from "@/components/primitives";
 import { seasons, site } from "@/content/team";
 
 export const metadata: Metadata = {
@@ -11,15 +13,32 @@ export const metadata: Metadata = {
 export default function RobotsPage() {
   return (
     <>
-      <PageHero
-        kicker="The robots"
-        title="Three seasons. Three machines. One trajectory."
-        lead="Every season's results below come straight from the official FIRST record. The engineering between the lines — prototypes, failed iterations, redesigns — lives in our documentation."
-      />
+      <div className="relative overflow-hidden border-b border-hairline">
+        <div className="dot-grid absolute inset-0" aria-hidden="true" />
+        <div className="hero-glow absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-36 sm:pt-44">
+          <Reveal>
+            <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-accent">
+              The robots
+            </p>
+            <h1 className="mx-auto mt-4 max-w-3xl text-center text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+              Three seasons. Three machines. One trajectory.
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed text-muted">
+              Drag the ring, or pick a season — every result below comes
+              straight from the official FIRST record.
+            </p>
+          </Reveal>
+          <Reveal delay={150} className="mt-12">
+            <SeasonStage seasons={seasons} />
+          </Reveal>
+        </div>
+      </div>
 
       {seasons.map((season, idx) => (
         <Section
           key={season.slug}
+          id={season.slug}
           className={idx > 0 ? "border-t border-hairline" : ""}
         >
           <Reveal>
@@ -48,11 +67,11 @@ export default function RobotsPage() {
                 {season.highlights.map((h) => (
                   <li
                     key={h}
-                    className="flex gap-3 text-sm leading-relaxed text-muted"
+                    className="group flex gap-3 text-sm leading-relaxed text-muted transition-colors hover:text-foreground"
                   >
                     <span
                       aria-hidden="true"
-                      className="mt-px select-none text-accent"
+                      className="mt-px select-none text-accent transition-transform group-hover:translate-x-1"
                     >
                       ▸
                     </span>
@@ -67,9 +86,9 @@ export default function RobotsPage() {
               </h3>
               <div className="mt-4 space-y-3">
                 {season.awards.map((a) => (
-                  <Card key={a} className="py-4">
+                  <SpotlightCard key={a} className="py-4">
                     <p className="text-sm leading-relaxed text-muted">{a}</p>
-                  </Card>
+                  </SpotlightCard>
                 ))}
               </div>
             </Reveal>

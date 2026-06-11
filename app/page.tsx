@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import { DecodeText } from "@/components/DecodeText";
+import { Marquee } from "@/components/Marquee";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import {
   AccentLink,
-  Card,
   CTAButton,
   Section,
   SectionHeading,
 } from "@/components/primitives";
-import { seasons, site, stats } from "@/content/team";
+import { seasons, site, sponsors, stats } from "@/content/team";
 
 export const metadata: Metadata = {
   description: `${site.name}, FTC Team ${site.teamNumber} from ${site.location}. World Championship Inspire Award finalists building robots — and making STEM accessible to all.`,
@@ -26,7 +30,7 @@ export default function Home() {
               {site.tagline} · {site.location}
             </p>
             <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl">
-              We solve hard problems.
+              <DecodeText text="We solve hard problems." />
               <br />
               <span className="text-muted">Then we share the answers.</span>
             </h1>
@@ -51,9 +55,9 @@ export default function Home() {
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 80}>
-              <Card className="h-full">
+              <SpotlightCard className="h-full">
                 <dd className="text-4xl font-semibold tracking-tight text-accent">
-                  {stat.value}
+                  <CountUp value={stat.value} />
                 </dd>
                 <dt className="mt-2 text-sm font-medium text-foreground">
                   {stat.label}
@@ -61,7 +65,7 @@ export default function Home() {
                 <p className="mt-1 text-xs leading-relaxed text-faint">
                   {stat.detail}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </dl>
@@ -79,7 +83,7 @@ export default function Home() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {seasons[0].highlights.slice(0, 4).map((h, i) => (
             <Reveal key={h} delay={i * 60}>
-              <Card>
+              <SpotlightCard tilt>
                 <p className="text-sm leading-relaxed text-muted">
                   <span
                     className="mr-3 font-mono text-xs text-accent"
@@ -89,12 +93,14 @@ export default function Home() {
                   </span>
                   {h}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
         <Reveal delay={120} className="mt-8">
-          <AccentLink href="/robots">Every season, every robot</AccentLink>
+          <AccentLink href="/robots">
+            Every season, every robot — in 3D
+          </AccentLink>
         </Reveal>
       </Section>
 
@@ -112,7 +118,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <Card className="bg-surface-raised">
+            <SpotlightCard tilt className="bg-surface-raised">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-faint">
                 solverslib · quickstart
               </p>
@@ -127,10 +133,28 @@ export default function Home() {
                 architecture, hardware wrappers, and gamepad tooling for FTC
                 teams moving past Blocks.
               </p>
-            </Card>
+            </SpotlightCard>
           </Reveal>
         </div>
       </Section>
+
+      {/* Sponsor marquee */}
+      <div className="border-t border-hairline py-12">
+        <p className="px-6 text-center font-mono text-xs uppercase tracking-[0.2em] text-faint">
+          Backed by
+        </p>
+        <Marquee className="mt-6">
+          {sponsors.map((name) => (
+            <Link
+              key={name}
+              href="/sponsors"
+              className="mx-7 whitespace-nowrap text-sm font-medium text-muted transition-colors hover:text-accent"
+            >
+              {name}
+            </Link>
+          ))}
+        </Marquee>
+      </div>
 
       {/* Sponsor CTA */}
       <Section className="border-t border-hairline">

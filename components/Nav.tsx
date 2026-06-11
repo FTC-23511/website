@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navLinks, site } from "@/content/team";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Nav() {
   const pathname = usePathname();
@@ -18,9 +19,11 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="flex items-baseline gap-2 text-sm font-semibold tracking-tight"
+          className="group flex items-baseline gap-2 text-sm font-semibold tracking-tight"
         >
-          <span className="text-foreground">{site.name}</span>
+          <span className="text-foreground transition-colors group-hover:text-accent">
+            {site.name}
+          </span>
           <span className="font-mono text-xs text-faint">
             {site.teamNumber}
           </span>
@@ -31,7 +34,8 @@ export function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors hover:text-foreground ${
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={`nav-link text-sm transition-colors hover:text-foreground ${
                 pathname === link.href ? "text-foreground" : "text-muted"
               }`}
             >
@@ -40,42 +44,46 @@ export function Nav() {
           ))}
           <Link
             href="/sponsors"
-            className="rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-background transition-colors hover:bg-accent-strong"
+            className="rounded-full bg-cta-bg px-4 py-1.5 text-sm font-medium text-cta-text transition-all hover:scale-105 hover:bg-cta-hover active:scale-95"
           >
             Sponsor us
           </Link>
+          <ThemeToggle />
         </div>
 
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-md text-muted hover:text-foreground md:hidden"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            aria-hidden="true"
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-muted hover:text-foreground"
           >
-            {open ? (
-              <path
-                d="M5 5l10 10M15 5L5 15"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            ) : (
-              <path
-                d="M3 6h14M3 10h14M3 14h14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            )}
-          </svg>
-        </button>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              {open ? (
+                <path
+                  d="M5 5l10 10M15 5L5 15"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              ) : (
+                <path
+                  d="M3 6h14M3 10h14M3 14h14"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -99,7 +107,7 @@ export function Nav() {
             <Link
               href="/sponsors"
               onClick={closeMenu}
-              className="mt-2 rounded-full bg-accent px-4 py-2.5 text-center text-base font-medium text-background"
+              className="mt-2 rounded-full bg-cta-bg px-4 py-2.5 text-center text-base font-medium text-cta-text"
             >
               Sponsor us
             </Link>

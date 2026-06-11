@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
-import {
-  Card,
-  PageHero,
-  Section,
-  SectionHeading,
-} from "@/components/primitives";
+import { SpotlightCard } from "@/components/SpotlightCard";
+import { PageHero, Section, SectionHeading } from "@/components/primitives";
 import { site, sponsors, stats } from "@/content/team";
 
 export const metadata: Metadata = {
@@ -48,14 +44,14 @@ export default function SponsorsPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {funding.map((f, i) => (
             <Reveal key={f.title} delay={i * 60}>
-              <Card className="h-full">
+              <SpotlightCard tilt className="h-full">
                 <h3 className="text-base font-semibold text-accent">
                   {f.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {f.body}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -91,7 +87,7 @@ export default function SponsorsPage() {
             {sponsors.map((name) => (
               <li
                 key={name}
-                className="flex min-h-20 items-center justify-center bg-surface px-4 py-6 text-center text-sm font-medium text-muted transition-colors hover:bg-surface-raised hover:text-foreground"
+                className="flex min-h-20 items-center justify-center bg-surface px-4 py-6 text-center text-sm font-medium text-muted transition-all duration-300 hover:-translate-y-0.5 hover:bg-surface-raised hover:text-foreground"
               >
                 {name}
               </li>
@@ -119,7 +115,7 @@ export default function SponsorsPage() {
               <div className="mt-8 flex justify-center">
                 <a
                   href={`mailto:${site.email}?subject=Sponsoring%20FTC%20${site.teamNumber}`}
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-strong"
+                  className="inline-flex items-center justify-center rounded-full bg-cta-bg px-6 py-3 text-sm font-medium text-cta-text transition-all hover:bg-cta-hover active:scale-95"
                 >
                   {site.email}
                 </a>

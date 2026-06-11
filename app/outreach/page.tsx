@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import {
   AccentLink,
-  Card,
   CTAButton,
   PageHero,
   Section,
@@ -28,7 +28,7 @@ export default function OutreachPage() {
         <div className="grid gap-4 lg:grid-cols-3">
           {outreach.map((program, i) => (
             <Reveal key={program.title} delay={i * 80}>
-              <Card className="flex h-full flex-col">
+              <SpotlightCard tilt className="flex h-full flex-col">
                 <h2 className="text-lg font-semibold">{program.title}</h2>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
                   {program.description}
@@ -40,7 +40,7 @@ export default function OutreachPage() {
                     </AccentLink>
                   </div>
                 )}
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -56,7 +56,7 @@ export default function OutreachPage() {
             />
           </Reveal>
           <Reveal delay={100}>
-            <Card className="bg-surface-raised">
+            <SpotlightCard className="bg-surface-raised">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-faint">
                 Recognition
               </p>
@@ -78,7 +78,7 @@ export default function OutreachPage() {
                   year.
                 </li>
               </ul>
-            </Card>
+            </SpotlightCard>
           </Reveal>
         </div>
       </Section>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Magnetic } from "@/components/Magnetic";
 
 /** Shared layout/typography building blocks (SPEC §2). Server components. */
 
@@ -35,12 +36,17 @@ export function PageHero({
 export function Section({
   children,
   className = "",
+  id,
 }: {
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }) {
   return (
-    <section className={`mx-auto max-w-6xl px-6 py-20 sm:py-24 ${className}`}>
+    <section
+      id={id}
+      className={`mx-auto max-w-6xl scroll-mt-20 px-6 py-20 sm:py-24 ${className}`}
+    >
       {children}
     </section>
   );
@@ -79,7 +85,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`rounded-xl border border-hairline bg-surface p-6 transition-colors hover:border-white/20 ${className}`}
+      className={`rounded-xl border border-hairline bg-surface p-6 transition-colors hover:border-foreground/25 ${className}`}
     >
       {children}
     </div>
@@ -134,14 +140,16 @@ export function CTAButton({
   variant?: "primary" | "ghost";
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors";
+    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all active:scale-95";
   const styles =
     variant === "primary"
-      ? "bg-accent text-background hover:bg-accent-strong"
-      : "border border-hairline text-foreground hover:border-white/25 hover:bg-surface";
+      ? "bg-cta-bg text-cta-text hover:bg-cta-hover"
+      : "border border-hairline text-foreground hover:border-foreground/30 hover:bg-surface";
   return (
-    <Link href={href} className={`${base} ${styles}`}>
-      {children}
-    </Link>
+    <Magnetic>
+      <Link href={href} className={`${base} ${styles}`}>
+        {children}
+      </Link>
+    </Magnetic>
   );
 }

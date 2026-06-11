@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { Card, PageHero, Section } from "@/components/primitives";
 import { site, socials } from "@/content/team";
 
@@ -36,7 +37,7 @@ export default function ContactPage() {
         <div className="grid gap-4 md:grid-cols-2">
           {channels.map((c, i) => (
             <Reveal key={c.title} delay={i * 60}>
-              <Card className="h-full">
+              <SpotlightCard className="h-full">
                 <h2 className="text-xs font-medium uppercase tracking-wider text-faint">
                   {c.title}
                 </h2>
@@ -49,7 +50,7 @@ export default function ContactPage() {
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {c.note}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
