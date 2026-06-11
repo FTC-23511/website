@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens — docs/SPEC.md §2 ("dark, premium, techy").
+ * One accent (electric cyan), near-black zinc surfaces, hairline borders.
+ * Everything color-related is defined here once.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b; /* zinc-950 */
+  --surface: #101013;
+  --surface-raised: #16161a;
+  --foreground: #fafafa; /* zinc-50 */
+  --muted: #a1a1aa; /* zinc-400 */
+  --faint: #71717a; /* zinc-500 */
+  --hairline: rgba(255, 255, 255, 0.08);
+  --accent: #22d3ee; /* cyan-400 */
+  --accent-strong: #67e8f9; /* cyan-300 */
+  --accent-dim: rgba(34, 211, 238, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-dim: var(--accent-dim);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Visible focus for keyboard users (SPEC §5.4). */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Subtle dot-grid texture for hero/section backdrops. */
+.dot-grid {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 35%,
+    black 30%,
+    transparent 75%
+  );
+}
+
+/* Soft accent glow used behind hero headings. */
+.hero-glow {
+  background: radial-gradient(
+    ellipse 55% 45% at 50% 40%,
+    rgba(34, 211, 238, 0.14),
+    transparent 70%
+  );
+}
+
+/* Scroll-reveal: elements start hidden, .is-visible animates them in.
+   Reveal.tsx adds the class via IntersectionObserver. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* SPEC §2 / §5.4: motion is opt-out for users who ask for less of it. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
