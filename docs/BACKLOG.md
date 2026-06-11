@@ -34,18 +34,19 @@ Priority is top-down — most important items at the top of "Next up."
 
 <!-- Routine moves items here with the PR link when work starts. -->
 
-- **UI v2 — brand palette, theming, micro-interactions, 3D gallery** — branch
-  `site/ui-v2` (interactive session, 2026-06-11, App Lead direction). Team
-  gold palette (coolors.co/u/seattle_solvers) as dual light/dark themes with
-  a persisted theme switcher; micro-interactions at every level (magnetic
-  CTAs, pointer-spotlight + tilt cards, count-up stats, decode-scramble hero,
-  sponsor marquee, scroll progress, animated nav underlines); CSS-3D season
-  gallery on /robots. No new dependencies — all pure CSS/JS. Auto-merge tier
-  (site source only; no new factual claims).
+_(empty)_
 
 ## Done
 
 <!-- Auto-archived after merge. Keep the last ~20 for reference; prune older. -->
+
+- 2026-06-11 — **UI v2 — brand palette, theming, micro-interactions, 3D
+  gallery** — team gold palette as dual themes + persisted switcher,
+  micro-interactions site-wide (spotlight/tilt cards, magnetic CTAs, count-up
+  stats, decode hero, sponsor marquee, scroll progress, nav underlines),
+  CSS-3D season gallery on /robots. Zero new deps; reduced-motion safe.
+  Merged in [#2](https://github.com/FTC-23511/website/pull/2); deploy green;
+  3D + theme markers verified on the live site.
 
 - 2026-06-11 — **Build website v1 per `docs/SPEC.md`** — all six routes,
   design system, researched content (sources cited in the PR), metadata,
