@@ -34,7 +34,14 @@ Priority is top-down — most important items at the top of "Next up."
 
 <!-- Routine moves items here with the PR link when work starts. -->
 
-_(empty)_
+- **UI v2 — brand palette, theming, micro-interactions, 3D gallery** — branch
+  `site/ui-v2` (interactive session, 2026-06-11, App Lead direction). Team
+  gold palette (coolors.co/u/seattle_solvers) as dual light/dark themes with
+  a persisted theme switcher; micro-interactions at every level (magnetic
+  CTAs, pointer-spotlight + tilt cards, count-up stats, decode-scramble hero,
+  sponsor marquee, scroll progress, animated nav underlines); CSS-3D season
+  gallery on /robots. No new dependencies — all pure CSS/JS. Auto-merge tier
+  (site source only; no new factual claims).
 
 ## Done
 
