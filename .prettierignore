@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+pnpm-lock.yaml
+next-env.d.ts
+
+# Pre-existing project docs and Claude config — not code, leave untouched
+CLAUDE.md
+AGENTS.md
+docs/
+.claude/

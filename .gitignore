@@ -19,3 +19,6 @@ desktop.ini
 
 # machine-local Claude permissions
 /.claude/settings.local.json
+
+# typescript incremental build info
+*.tsbuildinfo
