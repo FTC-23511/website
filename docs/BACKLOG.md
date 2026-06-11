@@ -33,6 +33,11 @@ Priority is top-down — most important items at the top of "Next up."
    reduced-motion), per-page metadata/OG check, README for the repo (what the
    site is, how to run, content-update guide for non-programmers). Auto-merge
    tier.
+4. **Workflow: opt deploy into Node 24** — GitHub Actions warns
+   `actions/deploy-pages@v4` runs Node 20, which is forced to Node 24 on
+   2026-06-16. Set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` in
+   `.github/workflows/deploy.yml` (or bump the action if a Node-24 version
+   exists) and confirm a green deploy. Approval-required tier (CI config).
 
 ## In progress
 
