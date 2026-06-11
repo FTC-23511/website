@@ -1,21 +1,61 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — docs/SPEC.md §2 ("dark, premium, techy").
- * One accent (electric cyan), near-black zinc surfaces, hairline borders.
- * Everything color-related is defined here once.
+ * Design tokens — docs/SPEC.md §2.
+ * Brand palette: the team's gold scheme (coolors.co/u/seattle_solvers) as two
+ * full themes. The switcher (components/ThemeToggle.tsx) flips `data-theme`
+ * on <html>; an inline script in layout.tsx applies the saved choice before
+ * first paint. Every color on the site flows through these variables — never
+ * hardcode a hex in a component.
+ *
+ * Contrast notes (WCAG AA): in the light theme the raw brand golds
+ * (#b99d00/#ffe75c) fail as text on beige, so --accent there is a darkened
+ * bronze reserved for text/icons while the bright golds carry fills, borders
+ * and glows (--accent-bright, --cta-*).
  */
-:root {
-  --background: #09090b; /* zinc-950 */
-  --surface: #101013;
-  --surface-raised: #16161a;
-  --foreground: #fafafa; /* zinc-50 */
-  --muted: #a1a1aa; /* zinc-400 */
-  --faint: #71717a; /* zinc-500 */
-  --hairline: rgba(255, 255, 255, 0.08);
-  --accent: #22d3ee; /* cyan-400 */
-  --accent-strong: #67e8f9; /* cyan-300 */
-  --accent-dim: rgba(34, 211, 238, 0.12);
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #070605; /* warm near-black */
+  --surface: #0f0e0a;
+  --surface-raised: #171408;
+  --foreground: #fbfaf2;
+  --muted: #aaa48e;
+  --faint: #837d68;
+  --hairline: rgba(255, 255, 255, 0.09);
+  --accent: #f2ce00; /* brand gold */
+  --accent-strong: #ffe75c; /* banana cream */
+  --accent-bright: #f2ce00;
+  --accent-dim: rgba(242, 206, 0, 0.13);
+  --cta-bg: #f2ce00;
+  --cta-text: #0a0903;
+  --cta-hover: #ffe75c;
+  --glow: rgba(242, 206, 0, 0.12);
+  --dot: rgba(255, 255, 255, 0.07);
+  --selection-bg: #f2ce00;
+  --selection-text: #070605;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #fcf9de; /* beige */
+  --surface: #ffffff;
+  --surface-raised: #f8f2b4; /* vanilla custard */
+  --foreground: #181505;
+  --muted: #5c573a;
+  --faint: #6e6950;
+  --hairline: rgba(24, 21, 5, 0.14);
+  --accent: #7d6a00; /* text-safe golden bronze */
+  --accent-strong: #514500;
+  --accent-bright: #b99d00; /* golden bronze, fills/borders */
+  --accent-dim: rgba(185, 157, 0, 0.18);
+  --cta-bg: #181505;
+  --cta-text: #ffe75c;
+  --cta-hover: #322c12;
+  --glow: rgba(185, 157, 0, 0.14);
+  --dot: rgba(24, 21, 5, 0.1);
+  --selection-bg: #ffe75c;
+  --selection-text: #181505;
 }
 
 @theme inline {
@@ -28,20 +68,31 @@
   --color-hairline: var(--hairline);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-accent-bright: var(--accent-bright);
   --color-accent-dim: var(--accent-dim);
+  --color-cta-bg: var(--cta-bg);
+  --color-cta-text: var(--cta-text);
+  --color-cta-hover: var(--cta-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--background);
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 /* Visible focus for keyboard users (SPEC §5.4). */
@@ -51,12 +102,10 @@ body {
   border-radius: 2px;
 }
 
-/* Subtle dot-grid texture for hero/section backdrops. */
+/* ---------- textures ---------- */
+
 .dot-grid {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.07) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(
     ellipse 80% 60% at 50% 35%,
@@ -65,17 +114,16 @@ body {
   );
 }
 
-/* Soft accent glow used behind hero headings. */
 .hero-glow {
   background: radial-gradient(
     ellipse 55% 45% at 50% 40%,
-    rgba(34, 211, 238, 0.14),
+    var(--glow),
     transparent 70%
   );
 }
 
-/* Scroll-reveal: elements start hidden, .is-visible animates them in.
-   Reveal.tsx adds the class via IntersectionObserver. */
+/* ---------- scroll reveal (Reveal.tsx) ---------- */
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
@@ -89,12 +137,138 @@ body {
   transform: none;
 }
 
-/* SPEC §2 / §5.4: motion is opt-out for users who ask for less of it. */
+/* ---------- nav link underline ---------- */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- scroll progress bar (ScrollProgress.tsx) ---------- */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* ---------- pointer spotlight (SpotlightCard.tsx) ---------- */
+
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-dim),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ---------- sponsor marquee (Marquee.tsx) ---------- */
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- 3D season stage (SeasonStage.tsx) ---------- */
+
+.stage3d {
+  perspective: 1400px;
+}
+
+.stage3d-ring {
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stage3d-card {
+  backface-visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease;
+}
+
+/* ---------- reduced motion: kill it all (SPEC §2/§5.4) ---------- */
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
   }
 
   *,

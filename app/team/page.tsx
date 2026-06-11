@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import {
   AccentLink,
   Card,
@@ -64,12 +65,12 @@ export default function TeamPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 60}>
-              <Card className="h-full">
+              <SpotlightCard className="h-full">
                 <h3 className="text-base font-semibold">{v.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {v.body}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -86,14 +87,14 @@ export default function TeamPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {subteams.map((s, i) => (
             <Reveal key={s.title} delay={i * 60}>
-              <Card className="h-full">
+              <SpotlightCard tilt className="h-full">
                 <h3 className="text-base font-semibold text-accent">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {s.body}
                 </p>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>

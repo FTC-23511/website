@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { site } from "@/content/team";
 
 const geistSans = Geist({
@@ -32,8 +33,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#070605" },
+    { media: "(prefers-color-scheme: light)", color: "#fcf9de" },
+  ],
 };
+
+// Applies the saved (or system) theme before first paint to avoid a flash of
+// the wrong theme. Must stay tiny and dependency-free.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export default function RootLayout({
   children,
@@ -43,9 +51,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-full flex-col">
+        <ScrollProgress />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

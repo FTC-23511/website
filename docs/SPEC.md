@@ -21,16 +21,27 @@ Audience priority (from interview):
    should feel generous, not just self-promotional.
 3. Judges and prospective members are welcome side effects, not the lead.
 
-## 2. Visual direction — "dark, premium, techy"
+## 2. Visual direction — "premium, techy", in the team's gold
 
 Reference quality tier: **Linear, Vercel, Stripe, Resend** marketing sites.
 
-- **Background**: near-black (not pure `#000`; e.g. zinc-950 family). Depth via
-  subtle radial gradients / glow, not flat panels.
-- **Accent**: ONE accent color used with discipline (CTAs, highlights, data
-  accents). Builder's choice — pick something that reads "engineering"
-  (electric blue / cyan / violet family), define it as a design token, and use
-  it consistently. Do not rainbow.
+- **Brand palette** (the team's scheme, coolors.co/u/seattle_solvers), shipped
+  as TWO full themes with a persisted switcher (updated 2026-06-11; v1's cyan
+  was a pre-brand stand-in):
+  - **Dark** (default): warm near-black surfaces, gold `#f2ce00` accent,
+    banana-cream `#ffe75c` hover.
+  - **Light**: beige `#fcf9de` background, white surfaces, vanilla-custard
+    `#f8f2b4` raised surfaces, golden-bronze accent (darkened to `#7d6a00`
+    where used as text — raw `#b99d00` fails AA on beige; bright golds carry
+    fills/borders/glows).
+  - All colors flow through CSS variables in `app/globals.css`; never hardcode
+    a hex in a component.
+- **Micro-interactions are a requirement**: pointer-spotlight + tilt cards,
+  magnetic CTAs, count-up stats, scramble-decode hero, sponsor marquee, scroll
+  progress bar, animated nav underlines — every interactive element gives
+  feedback. One signature 3D piece: the CSS-3D season gallery on `/robots`.
+  Everything is dependency-free (CSS + small JS) and collapses cleanly under
+  `prefers-reduced-motion`.
 - **Typography**: load a modern grotesque via `next/font` (Geist or Inter).
   Big confident headings, tight tracking on display sizes, generous line-height
   on body. Type scale is the design's backbone — get it right first.
