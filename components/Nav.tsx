@@ -2,17 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { navLinks, site } from "@/content/team";
 
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // Close the mobile menu on navigation.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const closeMenu = () => setOpen(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-background/80 backdrop-blur-md">
@@ -92,6 +88,7 @@ export function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={closeMenu}
                 className={`rounded-md px-3 py-2.5 text-base transition-colors hover:bg-surface ${
                   pathname === link.href ? "text-foreground" : "text-muted"
                 }`}
@@ -101,6 +98,7 @@ export function Nav() {
             ))}
             <Link
               href="/sponsors"
+              onClick={closeMenu}
               className="mt-2 rounded-full bg-accent px-4 py-2.5 text-center text-base font-medium text-background"
             >
               Sponsor us

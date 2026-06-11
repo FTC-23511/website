@@ -31,7 +31,7 @@ export default function Home() {
               <span className="text-muted">Then we share the answers.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-              {site.mission} Three seasons in, that's meant a World Championship
+              {site.mission} Three seasons in, that’s meant a World Championship
               Inspire Award run, an open-source library used by teams
               everywhere, and robotics classes for the next generation of
               builders.
