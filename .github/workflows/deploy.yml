@@ -10,6 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# GitHub forces all JavaScript actions to Node 24 on 2026-06-16; opt in early
+# (actions/deploy-pages@v4 still declares Node 20) so breakage surfaces now.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 # One deploy at a time; let an in-flight production deploy finish.
 concurrency:
   group: pages
