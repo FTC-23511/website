@@ -4,7 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { site } from "@/content/team";
+import { site } from "@/content/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +40,10 @@ export const viewport: Viewport = {
 };
 
 // Applies the saved (or system) theme before first paint to avoid a flash of
-// the wrong theme. Must stay tiny and dependency-free.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+// the wrong theme. Light is the default (SPEC v2 §6 — warmer for parents and
+// FIRST newcomers); dark stays one click away. Must stay tiny and
+// dependency-free.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export default function RootLayout({
   children,
@@ -51,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >

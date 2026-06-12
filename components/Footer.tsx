@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { navLinks, site, socials } from "@/content/team";
+import { donations, navLinks, site, socials } from "@/content/site";
 
+/**
+ * The footer carries all contact info — there is no /contact page (SPEC v2
+ * §2). Email, socials, and donation links live here on every page.
+ */
 export function Footer() {
   return (
-    <footer className="border-t border-hairline bg-surface">
+    <footer id="contact" className="border-t border-hairline bg-surface">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="sm:col-span-2">
             <p className="text-sm font-semibold">
               {site.name}{" "}
@@ -17,7 +21,8 @@ export function Footer() {
               {site.mission}
             </p>
             <p className="mt-3 text-xs text-faint">
-              {site.location} · est. {site.rookieYear} · {site.nonprofit}
+              {site.location} · est. {site.rookieYear} ·{" "}
+              {site.funding.toLowerCase()}
             </p>
           </div>
 
@@ -41,6 +46,44 @@ export function Footer() {
 
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-faint">
+              Contact
+            </p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="break-all text-sm text-muted transition-colors hover:text-foreground"
+                >
+                  {site.email}
+                </a>
+                <p className="text-xs text-faint">
+                  Classes and everything else
+                </p>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${site.businessEmail}`}
+                  className="break-all text-sm text-muted transition-colors hover:text-foreground"
+                >
+                  {site.businessEmail}
+                </a>
+                <p className="text-xs text-faint">Sponsorships</p>
+              </li>
+              <li>
+                <a
+                  href={donations[0].href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-accent transition-colors hover:text-accent-strong"
+                >
+                  Donate →
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wider text-faint">
               Elsewhere
             </p>
             <ul className="mt-3 space-y-2">
@@ -56,20 +99,12 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
-                >
-                  {site.email}
-                </a>
-              </li>
             </ul>
           </div>
         </div>
 
         <p className="mt-12 border-t border-hairline pt-6 text-xs leading-relaxed text-faint">
-          {site.name} is a {site.nonprofit.toLowerCase()} competing in the{" "}
+          {site.name} is a student robotics team competing in the{" "}
           <a
             href="https://www.firstinspires.org/robotics/ftc"
             target="_blank"

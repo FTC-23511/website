@@ -30,23 +30,26 @@ pnpm verify    # the gate: typecheck + lint + format check + build
 
 ## Where things live
 
-| What                                          | Where                                                                            |
-| --------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Every team fact** (awards, sponsors, stats) | `content/team.ts` — one file, source-commented. Edit facts here, never in pages. |
-| Pages (one folder per route)                  | `app/` — `page.tsx`, `team/`, `robots/`, `outreach/`, `sponsors/`, `contact/`    |
-| Design tokens (colors, accent, motion)        | `app/globals.css`                                                                |
-| Shared components                             | `components/` (Nav, Footer, Reveal, primitives)                                  |
-| Spec / design intent                          | `docs/SPEC.md`                                                                   |
-| Work queue + status                           | `docs/BACKLOG.md`                                                                |
-| Automation rules                              | `docs/ROUTINE.md` + `CLAUDE.md`                                                  |
+| What                                   | Where                                                                                                                            |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Every word and fact on the site**    | `content/` — one file per page, source-commented. Edit content here, never in pages. See [`docs/UPDATING.md`](docs/UPDATING.md). |
+| Class signup open/closed toggle        | `content/classes.ts` (`registrationState`)                                                                                       |
+| Pages (one folder per route)           | `app/` — `about/`, `classes/`, `robots/`, `outreach/`, `sponsors/`, `resources/`                                                 |
+| Design tokens (colors, accent, motion) | `app/globals.css`                                                                                                                |
+| Shared components                      | `components/` (Nav, Footer, Reveal, primitives)                                                                                  |
+| Spec / design intent                   | `docs/SPEC.md`                                                                                                                   |
+| Non-programmer update guide            | `docs/UPDATING.md`                                                                                                               |
+| Work queue + status                    | `docs/BACKLOG.md`                                                                                                                |
+| Automation rules                       | `docs/ROUTINE.md` + `CLAUDE.md`                                                                                                  |
 
 ## Content rules (important)
 
 Nothing on the site is invented. Facts come from public sources (FTCScout,
-the team's own published pages) and are cited in `content/team.ts`. Gaps are
-marked `PLACEHOLDER` in source. **Pending human input:** member roster +
-photos, robot imagery, sponsor logos/tiers, direct donation links — search the
-repo for `PLACEHOLDER` to find every slot.
+the team's own published pages) and are cited in the `content/` files. Gaps
+are marked `PLACEHOLDER` in source. **Pending human input:** member photos +
+full roster, robot imagery, sponsor logos, sponsorship packet PDF link,
+interest-form URL confirmation — search the repo for `PLACEHOLDER` to find
+every slot.
 
 ## Picking up where this left off
 
