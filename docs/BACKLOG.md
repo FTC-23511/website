@@ -23,39 +23,7 @@ blocks.
 
 <!-- Routine pulls from the top of this list. -->
 
-1. **v3 IA restructure** — SPEC v2 §2: routes/nav/footer to the seven-page
-   map (`/about`, `/classes`, `/resources` new; `/team` content folds into
-   `/about`; `/contact` folds into footer). Old `/team` and `/contact` paths
-   must not dead-end. Page shells with structured placeholder content are
-   fine; later items fill them. Auto-merge tier.
-2. **Classes page (flagship)** — SPEC v2 §3: evergreen marketing page for
-   Intro to Lego Robotics with curriculum, photos/testimonials slots, FAQ,
-   and the open/interest Jotform state toggle in a documented data file.
-   **[blocked: human — interest-form Jotform URL confirm, photos,
-   testimonials]** Auto-merge tier.
-3. **Home rework** — SPEC v2 §2: plain-language who-we-are + FIRST 101 primer
-   in the first screen and a half, prominent Classes section/CTA, impact +
-   results; sponsor CTA stays but isn't the lead. Auto-merge tier.
-4. **Sponsors pitch page** — SPEC v2 §4: the page *is* the sponsorship
-   package — hero, value props, tiers, sponsor logos, donate paths, PDF
-   packet link. **[blocked: human — logos, packet PDF]** Auto-merge tier.
-5. **About page** — SPEC v2 §2: team story/values/structure, fuller FIRST/FTC
-   explainer, member photo grid with roles. **[blocked: human — roster
-   photos]** Auto-merge tier.
-6. **Robots + Outreach restructure** — SPEC v2 §2: current season leads,
-   past seasons as compact cards; outreach programs + reach numbers.
-   Fact-check against ftcscout.org. Auto-merge tier.
-7. **Resources page** — SPEC v2 §2: curated links out (designs, documents,
-   SolversLib docs, GitHub, portfolio) with one-line descriptions; SolversLib
-   deliberately low-key. Auto-merge tier.
-8. **Warmth + voice pass** — SPEC v2 §5–6: site-wide copy rewrite to the
-   credible-mature-teen voice (no AI feel, acronyms explained), warm the
-   design for parents/newcomers, decide light-vs-dark default with preview
-   screenshots. Auto-merge tier.
-9. **Maintenance guide** — SPEC v2 §7: new-member workflow doc — updating
-   via Claude Code chats, editing data files on GitHub web, how
-   verify/PR/deploy work. Written for someone who has never used git.
-   Auto-merge tier.
+_(empty — all v3 items in flight on `routine/v3-rebuild`)_
 
 ## Human inputs needed
 
@@ -76,9 +44,14 @@ blocks.
 
 <!-- Routine moves items here with the PR link when work starts. -->
 
-- **PR-level CI + Node 24 deploy opt-in** — branch `routine/ci-node24`
-  (both former top-of-queue workflow items, shipped together; run under the
-  App Lead's direct "run everything now" directive, 2026-06-11).
+- **PR-level CI + Node 24 deploy opt-in** —
+  [#3](https://github.com/FTC-23511/website/pull/3) (both former
+  top-of-queue workflow items, shipped together; run under the App Lead's
+  direct "run everything now" directive, 2026-06-11).
+- **v3 rebuild (items 1–9)** — branch `routine/v3-rebuild`, all SPEC v2
+  items in one coherent PR per the same directive: IA restructure, Classes
+  flagship, Home/Sponsors/About/Robots/Outreach/Resources, voice + warmth,
+  maintenance guide.
 
 ## Done
 
