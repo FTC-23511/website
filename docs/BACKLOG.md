@@ -11,10 +11,11 @@ Add items by editing this file directly, or by asking Claude Code:
 
 Priority is top-down — most important items at the top of "Next up."
 
-**v3 rebuild**: items 3–11 implement [`SPEC.md`](SPEC.md) v2 (the 2026-06-11
-re-interview). Items marked **[blocked: human]** need assets/facts from the
-team first — see "Human inputs needed" below; ship them with placeholders if
-the routine reaches them early, but prefer reordering around blocks.
+**v3 rebuild**: the items below implement [`SPEC.md`](SPEC.md) v2 (the
+2026-06-11 re-interview). Items marked **[blocked: human]** need assets/facts
+from the team first — see "Human inputs needed" below; ship them with
+placeholders if the routine reaches them early, but prefer reordering around
+blocks.
 
 ---
 
@@ -22,67 +23,62 @@ the routine reaches them early, but prefer reordering around blocks.
 
 <!-- Routine pulls from the top of this list. -->
 
-1. **PR-level CI** — add a workflow running `pnpm verify` on `pull_request` so
-   branches get a green/red check before merge (today only the post-merge
-   deploy workflow gates). Approval-required tier (CI config).
-2. **Workflow: opt deploy into Node 24** — GitHub Actions warns
-   `actions/deploy-pages@v4` runs Node 20, which is forced to Node 24 on
-   2026-06-16. Set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` in
-   `.github/workflows/deploy.yml` (or bump the action if a Node-24 version
-   exists) and confirm a green deploy. Approval-required tier (CI config).
-3. **v3 IA restructure** — SPEC v2 §2: routes/nav/footer to the seven-page
+1. **v3 IA restructure** — SPEC v2 §2: routes/nav/footer to the seven-page
    map (`/about`, `/classes`, `/resources` new; `/team` content folds into
    `/about`; `/contact` folds into footer). Old `/team` and `/contact` paths
    must not dead-end. Page shells with structured placeholder content are
    fine; later items fill them. Auto-merge tier.
-4. **Classes page (flagship)** — SPEC v2 §3: evergreen marketing page for
+2. **Classes page (flagship)** — SPEC v2 §3: evergreen marketing page for
    Intro to Lego Robotics with curriculum, photos/testimonials slots, FAQ,
    and the open/interest Jotform state toggle in a documented data file.
-   **[blocked: human — Jotform URLs, curriculum, photos, testimonials, FAQ
-   answers]** Auto-merge tier.
-5. **Home rework** — SPEC v2 §2: plain-language who-we-are + FIRST 101 primer
+   **[blocked: human — interest-form Jotform URL confirm, photos,
+   testimonials]** Auto-merge tier.
+3. **Home rework** — SPEC v2 §2: plain-language who-we-are + FIRST 101 primer
    in the first screen and a half, prominent Classes section/CTA, impact +
    results; sponsor CTA stays but isn't the lead. Auto-merge tier.
-6. **Sponsors pitch page** — SPEC v2 §4: the page *is* the sponsorship
+4. **Sponsors pitch page** — SPEC v2 §4: the page *is* the sponsorship
    package — hero, value props, tiers, sponsor logos, donate paths, PDF
-   packet link. **[blocked: human — tiers, logos, donate links, packet PDF]**
-   Auto-merge tier.
-7. **About page** — SPEC v2 §2: team story/values/structure, fuller FIRST/FTC
-   explainer, member photo grid with roles. **[blocked: human — roster names,
-   photos, roles]** Auto-merge tier.
-8. **Robots + Outreach restructure** — SPEC v2 §2: current season leads,
+   packet link. **[blocked: human — logos, packet PDF]** Auto-merge tier.
+5. **About page** — SPEC v2 §2: team story/values/structure, fuller FIRST/FTC
+   explainer, member photo grid with roles. **[blocked: human — roster
+   photos]** Auto-merge tier.
+6. **Robots + Outreach restructure** — SPEC v2 §2: current season leads,
    past seasons as compact cards; outreach programs + reach numbers.
    Fact-check against ftcscout.org. Auto-merge tier.
-9. **Resources page** — SPEC v2 §2: curated links out (designs, documents,
+7. **Resources page** — SPEC v2 §2: curated links out (designs, documents,
    SolversLib docs, GitHub, portfolio) with one-line descriptions; SolversLib
    deliberately low-key. Auto-merge tier.
-10. **Warmth + voice pass** — SPEC v2 §5–6: site-wide copy rewrite to the
-    credible-mature-teen voice (no AI feel, acronyms explained), warm the
-    design for parents/newcomers, decide light-vs-dark default with preview
-    screenshots. Auto-merge tier.
-11. **Maintenance guide** — SPEC v2 §7: new-member workflow doc — updating
-    via Claude Code chats, editing data files on GitHub web, how
-    verify/PR/deploy work. Written for someone who has never used git.
-    Auto-merge tier.
+8. **Warmth + voice pass** — SPEC v2 §5–6: site-wide copy rewrite to the
+   credible-mature-teen voice (no AI feel, acronyms explained), warm the
+   design for parents/newcomers, decide light-vs-dark default with preview
+   screenshots. Auto-merge tier.
+9. **Maintenance guide** — SPEC v2 §7: new-member workflow doc — updating
+   via Claude Code chats, editing data files on GitHub web, how
+   verify/PR/deploy work. Written for someone who has never used git.
+   Auto-merge tier.
 
 ## Human inputs needed
 
 <!-- Assets/facts only the team can supply. Surface via /human-task-list. -->
 
-- Jotform URLs: class **signup** form + **interest/waitlist** form (item 4).
-- Classes content: curriculum outline, past-class photos, parent
-  testimonials, FAQ answers (item 4).
-- Sponsors: tier names/amounts/benefits, current sponsor list + logos,
-  donate links to confirm (HCB, APLOS), sponsorship packet PDF (item 6).
-- Roster: member names, photos, roles approved for the site (item 7).
+- Interest/waitlist Jotform URL confirm — current site's hidden interest page
+  shows the same form ID as signup (240864574513157); confirm whether one
+  form serves both or a separate interest form exists (item 2).
+- Classes content: past-class photos, parent testimonials (item 2).
+  Curriculum + FAQ policies recovered from the current site.
+- Sponsors: logo files, sponsorship packet PDF for linking (item 4). Tier
+  structure + sponsor list recovered from the current site.
+- Roster: member photos for the photo grid (item 5). Names/roles recovered
+  from the current site's About page.
 - Brand: logo vector / brand files (general).
-- Fact-check: awards/events list confirmation vs ftcscout (item 8).
 
 ## In progress
 
 <!-- Routine moves items here with the PR link when work starts. -->
 
-_(empty)_
+- **PR-level CI + Node 24 deploy opt-in** — branch `routine/ci-node24`
+  (both former top-of-queue workflow items, shipped together; run under the
+  App Lead's direct "run everything now" directive, 2026-06-11).
 
 ## Done
 
