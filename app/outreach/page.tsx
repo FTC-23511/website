@@ -8,11 +8,12 @@ import {
   Section,
   SectionHeading,
 } from "@/components/primitives";
-import { outreach, site } from "@/content/team";
+import { site } from "@/content/site";
+import { programs, recognition } from "@/content/outreach";
 
 export const metadata: Metadata = {
   title: "Outreach",
-  description: `How ${site.name} gives back: SolversLib, free LEGO robotics classes for grades 3–7, and open CAD and engineering documentation for the FTC community.`,
+  description: `How ${site.name} gives back: LEGO robotics classes for 70+ kids, curriculum for the RISE School in India, and open engineering resources for FTC teams everywhere.`,
 };
 
 export default function OutreachPage() {
@@ -20,13 +21,13 @@ export default function OutreachPage() {
     <>
       <PageHero
         kicker="Outreach"
-        title="The robot retires every season. The community work compounds."
+        title="The robot retires every season. The community work doesn't."
         lead={site.mission}
       />
 
       <Section>
         <div className="grid gap-4 lg:grid-cols-3">
-          {outreach.map((program, i) => (
+          {programs.map((program, i) => (
             <Reveal key={program.title} delay={i * 80}>
               <SpotlightCard tilt className="flex h-full flex-col">
                 <h2 className="text-lg font-semibold">{program.title}</h2>
@@ -35,7 +36,10 @@ export default function OutreachPage() {
                 </p>
                 {program.link && (
                   <div className="mt-5">
-                    <AccentLink href={program.link.href} external>
+                    <AccentLink
+                      href={program.link.href}
+                      external={program.link.external}
+                    >
                       {program.link.label}
                     </AccentLink>
                   </div>
@@ -50,9 +54,9 @@ export default function OutreachPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <SectionHeading
-              kicker="Why it matters"
+              kicker="Why it matters to us"
               title="We were the kids in the class once"
-              lead="This team grew out of FIRST LEGO League. The students teaching our grade 3–7 robotics classes learned the same way a few years earlier — which is exactly why the curriculum works. Outreach isn't a checkbox for an award; it's the team's origin story running in reverse."
+              lead="This team grew out of FIRST LEGO League. The students teaching our classes learned the same way a few years earlier — which is exactly why the curriculum works. Outreach isn't a checkbox for an award; it's our own story, running in reverse."
             />
           </Reveal>
           <Reveal delay={100}>
@@ -61,22 +65,12 @@ export default function OutreachPage() {
                 Recognition
               </p>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted">
-                <li>
-                  <span className="text-foreground">
-                    Inspire Award 2nd Place
-                  </span>{" "}
-                  — FIRST World Championship, Lovelace Division. FTC’s top
-                  award, judging outreach and engineering together.
-                </li>
-                <li>
-                  <span className="text-foreground">Sustain Award 1st</span> —
-                  Capek Super Qualifier, for sustainable community impact.
-                </li>
-                <li>
-                  <span className="text-foreground">Motivate Award</span> —
-                  recognized for team spirit and STEM advocacy since rookie
-                  year.
-                </li>
+                {recognition.map((r) => (
+                  <li key={r.award}>
+                    <span className="text-foreground">{r.award}</span> —{" "}
+                    {r.context}
+                  </li>
+                ))}
               </ul>
             </SpotlightCard>
           </Reveal>
@@ -89,15 +83,22 @@ export default function OutreachPage() {
             <div className="hero-glow absolute inset-0" aria-hidden="true" />
             <div className="relative">
               <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-                Want a class, a mentor session, or a collab?
+                Want a class for your kid — or your school?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
-                We run programs for schools, libraries, and other teams. If
-                you’re in the Seattle area — or anywhere SolversLib reaches —
-                get in touch.
+                Our LEGO robotics classes are how most families meet us. We also
+                work with schools, libraries, and other teams — if you have
+                something in mind, email{" "}
+                <a
+                  href={`mailto:${site.email}`}
+                  className="font-medium text-accent hover:text-accent-strong"
+                >
+                  {site.email}
+                </a>
+                .
               </p>
               <div className="mt-8 flex justify-center">
-                <CTAButton href="/contact">Contact the team</CTAButton>
+                <CTAButton href="/classes">About the classes</CTAButton>
               </div>
             </div>
           </div>

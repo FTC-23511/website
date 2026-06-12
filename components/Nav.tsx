@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navLinks, site } from "@/content/team";
+import { navLinks, site } from "@/content/site";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Nav() {
@@ -29,7 +29,7 @@ export function Nav() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}

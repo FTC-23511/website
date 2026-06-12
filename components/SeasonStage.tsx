@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Season } from "@/content/team";
+import type { Season } from "@/content/robots";
 
 /**
  * Interactive 3D season gallery: the three season cards sit on a rotating
@@ -103,6 +103,11 @@ export function SeasonStage({ seasons }: { seasons: Season[] }) {
                     <p className="mt-2 text-3xl font-semibold tracking-tight">
                       {season.game}
                     </p>
+                    {season.robot && (
+                      <p className="mt-1 text-sm text-muted">
+                        Robot: {season.robot}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <p className="text-xs leading-relaxed text-muted">
