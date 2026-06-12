@@ -44,22 +44,23 @@ _(empty — all v3 items in flight on `routine/v3-rebuild`)_
 
 <!-- Routine moves items here with the PR link when work starts. -->
 
-- **PR-level CI + Node 24 deploy opt-in** —
-  [#3](https://github.com/FTC-23511/website/pull/3). CI green on the PR.
-  **Awaiting App Lead merge** — the permission layer held the merge back as
-  approval-required CI config. Merge this one first.
-- **v3 rebuild (items 1–9)** —
-  [#4](https://github.com/FTC-23511/website/pull/4). All SPEC v2 items in
-  one PR: IA restructure, Classes flagship, Home/Sponsors/About/Robots/
-  Outreach/Resources, voice + warmth (light default), maintenance guide.
-  `pnpm verify` green locally; all routes verified in the local preview.
-  **Awaiting App Lead merge** (merge after #3; the PR-level CI check will
-  run once the branch updates against the new main, or merge on the
-  strength of local verify + the deploy workflow's own gate).
+_(none)_
 
 ## Done
 
 <!-- Auto-archived after merge. Keep the last ~20 for reference; prune older. -->
+
+- 2026-06-12 — **PR-level CI + Node 24 deploy opt-in** — `pnpm verify` on
+  every pull_request; opted deploy workflow into Node 24 LTS. CI config change,
+  merged by App Lead in [#3](https://github.com/FTC-23511/website/pull/3).
+  Deploy green.
+
+- 2026-06-12 — **v3 rebuild (items 1–9)** — full SPEC v2 implementation:
+  Classes flagship, 7-page IA (About, Robots, Outreach, Resources pages added),
+  Home/Sponsors/Team pages rewritten, human-voice content, light-default warm
+  design, `docs/UPDATING.md` maintenance guide, all content moved to `content/`
+  data files. Merged by App Lead in [#4](https://github.com/FTC-23511/website/pull/4).
+  Deploy green. Placeholders remain for photos/logos — see "Human inputs needed."
 
 - 2026-06-11 — **SPEC v2 re-interview + re-spec** — in-depth App Lead
   interview (6 rounds); `docs/SPEC.md` rewritten as v2 (classes flagship,
