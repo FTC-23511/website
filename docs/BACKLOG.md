@@ -45,13 +45,17 @@ _(empty — all v3 items in flight on `routine/v3-rebuild`)_
 <!-- Routine moves items here with the PR link when work starts. -->
 
 - **PR-level CI + Node 24 deploy opt-in** —
-  [#3](https://github.com/FTC-23511/website/pull/3) (both former
-  top-of-queue workflow items, shipped together; run under the App Lead's
-  direct "run everything now" directive, 2026-06-11).
-- **v3 rebuild (items 1–9)** — branch `routine/v3-rebuild`, all SPEC v2
-  items in one coherent PR per the same directive: IA restructure, Classes
-  flagship, Home/Sponsors/About/Robots/Outreach/Resources, voice + warmth,
-  maintenance guide.
+  [#3](https://github.com/FTC-23511/website/pull/3). CI green on the PR.
+  **Awaiting App Lead merge** — the permission layer held the merge back as
+  approval-required CI config. Merge this one first.
+- **v3 rebuild (items 1–9)** —
+  [#4](https://github.com/FTC-23511/website/pull/4). All SPEC v2 items in
+  one PR: IA restructure, Classes flagship, Home/Sponsors/About/Robots/
+  Outreach/Resources, voice + warmth (light default), maintenance guide.
+  `pnpm verify` green locally; all routes verified in the local preview.
+  **Awaiting App Lead merge** (merge after #3; the PR-level CI check will
+  run once the branch updates against the new main, or merge on the
+  strength of local verify + the deploy workflow's own gate).
 
 ## Done
 
